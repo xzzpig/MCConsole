@@ -8,6 +8,7 @@ import java.util.*;
 import android.app.*;
 import android.location.*;
 import android.text.*;
+import android.os.*;
 
 public class ButtonClickEvent
 {
@@ -29,7 +30,6 @@ public class ButtonClickEvent
 						RCON.connect(Vars.ip,Vars.port);
 					}
 					catch(Exception e){
-						System.out.println("Error");
 						result.finish(e.getMessage());
 						return;
 					}
@@ -62,13 +62,20 @@ public class ButtonClickEvent
 		if(result.result){
 			Toast.makeText(a,"RCON连接并登录成功",Toast.LENGTH_SHORT).show();
 			a.setContentView(R.layout.choice);
-			Vars.page = R.layout.choice;}
+			Vars.page = R.layout.choice;
+			MenuEvent.reBuildMenu();
+		}
 		else
 			Toast.makeText(a,result.errorMessage,Toast.LENGTH_SHORT).show();
+		((TextView)MainActivity.main.findViewById(R.id.TextView_Info)).setText(Voids.getServerInfo());
 	}
 	public static void kzt(Activity a,View view){
 		a.setContentView(R.layout.console);
 		Vars.page = R.layout.console;
+		MenuEvent.reBuildMenu();
+		TextView print = (TextView)a.findViewById(R.id.EditText_print);
+		print.setText(Html.fromHtml(Vars.before.replaceAll("\n","<br>")));
+
 	}
 	public static void send(Activity a,View view){
 		final String command = ((TextView)a.findViewById(R.id.EditText_Command)).getText().toString();

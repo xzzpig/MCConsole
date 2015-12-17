@@ -15,10 +15,12 @@ import android.content.*;
 
 public class MainActivity extends Activity
 {
+	public static Activity main;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+		main = this;
         setContentView(R.layout.main);
 		Vars.page = R.layout.main;
 		SharedPreferences data = this.getSharedPreferences("DATA",MODE_PRIVATE);
@@ -53,10 +55,51 @@ public class MainActivity extends Activity
 			case R.layout.console :
 				setContentView(R.layout.choice);
 				Vars.page = R.layout.choice;
+				((TextView)MainActivity.main.findViewById(R.id.TextView_Info)).setText(Voids.getServerInfo());
 				break;
 			case R.layout.main :
 				super.onBackPressed();
 				break;
 		}
+		MenuEvent.reBuildMenu();
 	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu){
+		if(Vars.page == R.layout.main)
+			menu.add(0,0,0,"无");
+		Vars.menu = menu;
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		/*
+		if(item.getTitle().toString().equalsIgnoreCase("重新连接")){
+			new Thread(new Runnable(){
+					@Override
+					public void run(){
+						try{
+							RCON.connect(Vars.ip,Vars.port);
+							RCON.login(Vars.password);
+							sendToast("重连成功");
+						}
+						catch(Exception e){
+							sendToast("重新连接失败("+e.getMessage()+")");
+							return;
+						}
+						
+					}
+				}).start();
+		}*/
+		MenuEvent.onOptionsItemSelected(item);
+		return super.onOptionsItemSelected(item);
+	}
+
+	public static void sendToast(String arg){
+		Looper.prepare();
+		Toast.makeText(main,arg,Toast.LENGTH_SHORT).show();
+		Looper.loop();
+	}
+
 }

@@ -22,7 +22,7 @@
 			android:layout_height="wrap_content"
 			android:inputType="textPostalAddress"
 			android:ems="10"
-			android:layout_width="wrap_content"
+			android:layout_width="match_parent"
 			android:layout_marginLeft="20dp"
 			android:id="@+id/EditText_ip"
 			android:hint="服务器ip"/>
@@ -45,7 +45,7 @@
 			android:layout_height="wrap_content"
 			android:inputType="number"
 			android:ems="10"
-			android:layout_width="wrap_content"
+			android:layout_width="match_parent"
 			android:id="@+id/EditText_port"
 			android:hint="端口"/>
 
@@ -67,7 +67,7 @@
 			android:layout_height="wrap_content"
 			android:inputType="textPassword"
 			android:ems="10"
-			android:layout_width="wrap_content"
+			android:layout_width="match_parent"
 			android:id="@+id/EditText_psw"
 			android:hint="密码"/>
 

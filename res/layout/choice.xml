@@ -8,16 +8,43 @@
 
 	<LinearLayout
 		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:orientation="vertical">
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:text="服务器信息"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:layout_width="wrap_content"/>
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:text="None"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_width="wrap_content"
+			android:id="@+id/TextView_Info"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_height="wrap_content"
 		style="?android:attr/buttonBarStyle"
 		android:layout_width="wrap_content"
 		android:orientation="horizontal">
 
-		<Button
+		<LinearLayout
 			android:layout_height="wrap_content"
-			android:text="控制台"
 			android:layout_width="wrap_content"
-			android:id="@+id/Button_kzt"
-			android:onClick="onBKClick"/>
+			android:orientation="horizontal">
+
+			<Button
+				android:layout_height="wrap_content"
+				android:text="控制台"
+				android:layout_width="wrap_content"
+				android:id="@+id/Button_kzt"
+				android:onClick="onBKClick"/>
+
+		</LinearLayout>
 
 	</LinearLayout>
 
